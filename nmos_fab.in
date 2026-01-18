@@ -1,0 +1,43 @@
+go athena
+
+# 1. Grid Definition
+line x loc=0.00 spac=0.10
+line x loc=0.3 spac=0.02
+line x loc=0.5 spac=0.02
+line x loc=0.8 spac=0.10
+
+line y loc=0.00 spac=0.01
+line y loc=0.2 spac=0.02
+line y loc=0.5 spac=0.05
+line y loc=1.0 spac=0.2
+
+# 2. Substrate Initialization 
+init silicon c.boron=1e15 orientation=100
+
+# 3. Gate Oxide and Polysilicon Gate
+diffus time=10 temp=1000 dryo2
+deposit poly thick=0.2 div=10 
+etch poly left p1.x=0.35
+etch poly right p1.x=0.45
+
+# 4. Source and Drain Implantation
+implant arsenic dose=5e15 energy=40 crystal
+diffus time=5 temp=900 nitro
+
+# 5. Contacts and Electrode naming
+etch oxide left p1.x=0.15
+etch oxide right p1.x=0.65
+deposit aluminum thick=0.05 div=5
+etch aluminum start x=0.25 y=-0.5
+etch aluminum continue x=0.55 y=-0.5
+etch aluminum continue x=0.55 y=0.5
+etch aluminum done x=0.25 y=0.5
+
+electrode name=gate x=0.4 y=-0.1
+electrode name=source x=0.05 y=0
+electrode name=drain x=0.75 y=0
+electrode name=substrate backside
+
+structure outf=nmos_scaled.str
+tonyplot nmos_scaled.str
+quit

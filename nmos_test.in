@@ -1,0 +1,28 @@
+go atlas
+
+# 1. Load the structure you just made
+mesh inf=nmos_scaled.str
+
+# 2. Setup Physics
+models cvt srh print 
+contact name=gate n.poly
+
+# 3. Get Id-Vgs data
+solve init
+solve vdrain=0.1
+log outf=nmos_idvgs.log
+solve vgate=0 step=0.05 vfinal=3.0 name=gate
+
+# 4. Extract Threshold Voltage (Vt) - The standard way
+extract name="vt" (xintercept(maxslope(curve(v."gate", i."drain"))))
+
+# 5. Get Id-Vds data
+solve init
+solve vgate=1.5
+log outf=nmos_idvds.log
+solve vdrain=0 step=0.1 vfinal=3.0 name=drain
+
+tonyplot nmos_idvgs.log
+tonyplot nmos_idvds.log
+
+quit
