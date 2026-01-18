@@ -23,9 +23,9 @@ The project systematically varied the channel length to study the effects of tec
 
 
 ## 📉 Key Findings
-**Scaling Impact:** As the channel length decreases, short-channel effects (SCE) become more prominen.
-**Short-Channel Effects:** Miniaturization leads to a reduced threshold voltage and increased leakage current.
-**Trade-offs:** The results highlight the fundamental trade-offs between high performance and power consumption in modern CMOS devices.
+1. **Scaling Impact:** As the channel length decreases, short-channel effects (SCE) become more prominen.
+2. **Short-Channel Effects:** Miniaturization leads to a reduced threshold voltage and increased leakage current.
+3. **Trade-offs:** The results highlight the fundamental trade-offs between high performance and power consumption in modern CMOS devices.
 
 ## 🚀 How to Use
 1. **Simulation:** Run the `nmos_fab.in` file in Silvaco DeckBuild to generate the structure.
